@@ -1,6 +1,5 @@
 package com.luv2code.ecommerce.domain;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +21,6 @@ public class ProductCategory {
     @Column(name = "category_name")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productCategory")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private Set<Product> products;
 }
