@@ -1,6 +1,7 @@
 package com.luv2code.ecommerce.config;
 
 import com.luv2code.ecommerce.domain.Product;
+import com.luv2code.ecommerce.domain.ProductCategory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -17,6 +18,12 @@ public class DataRestConfig implements RepositoryRestConfigurer {
         // Disable HTTP methods for Product: POST, PUT and DELETE
         config.getExposureConfiguration()
                 .forDomainType(Product.class)
+                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedMethods))
+                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedMethods));
+
+        // Disable HTTP methods for ProductCategory: POST, PUT and DELETE
+        config.getExposureConfiguration()
+                .forDomainType(ProductCategory.class)
                 .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedMethods))
                 .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedMethods));
     }
