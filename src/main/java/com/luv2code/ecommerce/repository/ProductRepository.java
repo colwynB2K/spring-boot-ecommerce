@@ -10,4 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @CrossOrigin("http://localhost:4200")
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Page<Product> findByCategoryId(@RequestParam("id") Long id, Pageable pageable);
+
+    Page<Product> findByNameContaining(@RequestParam("keyword") String keyword, Pageable pageable);				// if method name has 'Containing' in it, this will translate into a query based on keyword 'LIKE' => WHERE name LIKE CONCAT('%', :keyword , '%')
 }
